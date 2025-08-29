@@ -33,7 +33,7 @@ function CustomModal({modaltype, response, onSubmit, onClear}){
        e.preventDefault();
        const useremail = e.target.email.value;
 
-       axios.get(`http://localhost:8086/admin/user/get?emailid=${useremail}`,{headers:{"Content-Type":"application/json"}, withCredentials:true})
+       axios.get(`${process.env.REACT_APP_API_URL}/admin/user/get?emailid=${useremail}`,{headers:{"Content-Type":"application/json"}, withCredentials:true})
         .then((response)=>setuserresponse(response.data)).catch((error)=>setuserresponse(error))
 
     }
@@ -43,7 +43,7 @@ function CustomModal({modaltype, response, onSubmit, onClear}){
         e.preventDefault();
         const productid = e.target.id.value;
  
-        axios.get(`http://localhost:8086/admin/product/view/${productid}`,{headers:{"Content-Type":"application/json"}, withCredentials:true})
+        axios.get(`${process.env.REACT_APP_API_URL}/admin/product/view/${productid}`,{headers:{"Content-Type":"application/json"}, withCredentials:true})
          .then((response)=>setproductresponse(response.data)).catch((error)=>setproductresponse(error))
  
     }

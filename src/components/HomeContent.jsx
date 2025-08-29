@@ -26,7 +26,7 @@ const HomeContent = () => {
 
         setisLoading(true);
 
-        const response = await axios.get('http://localhost:8086/api/products',{headers:{"Content-Type":"application/json"},withCredentials:true})
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/products`,{headers:{"Content-Type":"application/json"},withCredentials:true})
               
         setproductinfo(response.data);
 
@@ -48,13 +48,13 @@ const HomeContent = () => {
 
   function handleaddcartclick(productid, quantity){
 
-    axios.post('http://localhost:8086/api/cart/item/add',{"productid":productid, "quantity":quantity},{headers:{"Content-Type":"application/json"},withCredentials:true}).then((response)=>{setquantityupdated(response.data.count); setquantityupdated(response.data.count)}).catch((error)=>setcartresponse(error.data.message));
+    axios.post(`${process.env.REACT_APP_API_URL}/api/cart/item/add`,{"productid":productid, "quantity":quantity},{headers:{"Content-Type":"application/json"},withCredentials:true}).then((response)=>{setquantityupdated(response.data.count); setquantityupdated(response.data.count)}).catch((error)=>setcartresponse(error.data.message));
 
   }
 
    function handleAddButton(productid, productquantity){
 
-    axios.put('http://localhost:8086/api/cart/item/update',{"productid":productid, "quantity":productquantity+1},{headers:{"Content-Type":"application/json"},withCredentials:true}
+    axios.put(`${process.env.REACT_APP_API_URL}/api/cart/item/update`,{"productid":productid, "quantity":productquantity+1},{headers:{"Content-Type":"application/json"},withCredentials:true}
     ).then((response)=>{setcartresponse(response.data.message);setquantityupdated(response.data.count)})
       .catch((e)=>setcartresponse(e));
 
@@ -62,7 +62,7 @@ const HomeContent = () => {
 
  function handleSubButton(productid, productquantity){
 
-    axios.put('http://localhost:8086/api/cart/item/update',{"productid":productid, "quantity":productquantity-1},{headers:{"Content-Type":"application/json"},withCredentials:true}
+    axios.put(`${process.env.REACT_APP_API_URL}/api/cart/item/update`,{"productid":productid, "quantity":productquantity-1},{headers:{"Content-Type":"application/json"},withCredentials:true}
     ).then((response)=>{setcartresponse(response.data.message);setquantityupdated(response.data.count)})
       .catch((e)=>setcartresponse(e));
 

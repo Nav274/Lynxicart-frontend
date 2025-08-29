@@ -12,7 +12,7 @@ function Order(){
     useEffect(() => {
         const fetchOrderItems = async () => {
           try {
-            const response = await axios.get('http://localhost:8086/api/order/items', {
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/order/items`, {
               headers: { "Content-Type": "application/json" },
               withCredentials: true,
             });

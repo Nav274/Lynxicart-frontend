@@ -29,7 +29,7 @@ function Changepass(){
          
         if (e.target.newpassword.value === e.target.confpassword.value) {
 
-            fetch("http://localhost:8086/forgotpass/changepass", {
+            fetch(`${process.env.REACT_APP_API_URL}/forgotpass/changepass`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

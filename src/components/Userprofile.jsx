@@ -32,7 +32,7 @@ const Userprofile = () => {
 
         try{
 
-          const response = await fetch(`http://localhost:8086/admin/user/modify/${userid}`,{ 
+          const response = await fetch(`${process.env.REACT_APP_API_URL}/admin/user/modify/${userid}`,{ 
 
               method:"PUT", 
               headers:{"Content-Type":"application/json"}, 
@@ -61,7 +61,7 @@ const Userprofile = () => {
 
           try{
 
-            const response = await fetch(`http://localhost:8086/api/usermodify/${userid}`,{ 
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/usermodify/${userid}`,{ 
   
                 method:"PUT", 
                 headers:{"Content-Type":"application/json"}, 
