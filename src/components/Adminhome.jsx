@@ -22,7 +22,7 @@ function Adminhome(){
 
     function handleadduser(data){
 
-        axios.post('http://localhost:8086/admin/user/add',data,{headers:{"Content-Type":"application/json"}, withCredentials:true})
+        axios.post(`${process.env.REACT_APP_API_URL}/admin/user/add`,data,{headers:{"Content-Type":"application/json"}, withCredentials:true})
         .then((response)=>setresponse(response.data)).catch((error)=>setresponse(error.response.data))
 
     }
@@ -31,7 +31,7 @@ function Adminhome(){
 
         const requestparam = data?.id;
 
-        axios.put(`http://localhost:8086/admin/user/modify/${requestparam}`,data,{headers:{"Content-Type":"application/json"}, withCredentials:true})
+        axios.put(`${process.env.REACT_APP_API_URL}/admin/user/modify/${requestparam}`,data,{headers:{"Content-Type":"application/json"}, withCredentials:true})
         .then((response)=>setresponse(response.data)).catch((error)=>setresponse(error.response.data))
 
     }
@@ -40,23 +40,23 @@ function Adminhome(){
 
         const requestparam = data.userid;
         
-        axios.delete(`http://localhost:8086/admin/user/delete/${requestparam}`,{headers:{"Content-Type":"application/json"}, withCredentials:true})
+        axios.delete(`${process.env.REACT_APP_API_URL}/admin/user/delete/${requestparam}`,{headers:{"Content-Type":"application/json"}, withCredentials:true})
         .then((response)=>setresponse(response.data)).catch((error)=>setresponse(error.response.data))
 
     }
 
     function handlegetuser(data){
-
+        //`${process.env.REACT_APP_API_URL}`;
         const requestparam = data.email;
-
-        axios.get(`http://localhost:8086/admin/user/get?emailid=${requestparam}`,{headers:{"Content-Type":"application/json"}, withCredentials:true})
+        
+        axios.get(`${process.env.REACT_APP_API_URL}/admin/user/get?emailid=${requestparam}`,{headers:{"Content-Type":"application/json"}, withCredentials:true})
         .then((response)=>setresponse(response.data)).catch((error)=>setresponse(error.response.data))
 
     }
 
     function handleaddproduct(data){
 
-        axios.post('http://localhost:8086/admin/product/add',data,{headers:{"Content-Type":"application/json"}, withCredentials:true})
+        axios.post(`${process.env.REACT_APP_API_URL}/admin/product/add`,data,{headers:{"Content-Type":"application/json"}, withCredentials:true})
         .then((response)=>setresponse(response.data)).catch((error)=>setresponse(error.response.data))
 
     }
@@ -65,7 +65,7 @@ function Adminhome(){
 
         const requestparam = data?.id;
 
-        axios.put(`http://localhost:8086/admin/product/modify/${requestparam}`,data,{headers:{"Content-Type":"application/json"}, withCredentials:true})
+        axios.put(`${process.env.REACT_APP_API_URL}/admin/product/modify/${requestparam}`,data,{headers:{"Content-Type":"application/json"}, withCredentials:true})
         .then((response)=>setresponse(response.data)).catch((error)=>setresponse(error.response.data))
 
     }
@@ -74,7 +74,7 @@ function Adminhome(){
 
         const requestparam = data?.id;
 
-        axios.delete(`http://localhost:8086/admin/product/delete/${requestparam}`,{headers:{"Content-Type":"application/json"}, withCredentials:true})
+        axios.delete(`${process.env.REACT_APP_API_URL}/admin/product/delete/${requestparam}`,{headers:{"Content-Type":"application/json"}, withCredentials:true})
         .then((response)=>setresponse(response.data)).catch((error)=>setresponse(error.response.data))
 
     }
@@ -83,7 +83,7 @@ function Adminhome(){
 
         const requestparam = data?.id;
 
-        axios.get(`http://localhost:8086/admin/product/view/${requestparam}`,{headers:{"Content-Type":"application/json"}, withCredentials:true})
+        axios.get(`${process.env.REACT_APP_API_URL}/admin/product/view/${requestparam}`,{headers:{"Content-Type":"application/json"}, withCredentials:true})
         .then((response)=>setresponse(response.data)).catch((error)=>setresponse(error.response.data))
 
     }

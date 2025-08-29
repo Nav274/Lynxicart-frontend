@@ -40,7 +40,7 @@ function ForgetPass(){
         try{
 
     
-            const response  = await axios.get(`http://localhost:8086/forgotpass/emailauth?email=${formvalue.email}`, {headers:{"Content-Type":"application/json"}, withCredentials:true});
+            const response  = await axios.get(`${process.env.REACT_APP_API_URL}/forgotpass/emailauth?email=${formvalue.email}`, {headers:{"Content-Type":"application/json"}, withCredentials:true});
 
             setotpresponse(response.data.otpresponse);
             setuserid(response.data.userid);
@@ -63,7 +63,7 @@ function ForgetPass(){
 
            const verifyauthotp = JSON.stringify(verifyotp);
 
-            const response  = await axios.post(`http://localhost:8086/forgotpass/verifyotp`, verifyauthotp, {headers:{"Content-Type":"application/json"}, withCredentials:true});
+            const response  = await axios.post(`${process.env.REACT_APP_API_URL}/forgotpass/verifyotp`, verifyauthotp, {headers:{"Content-Type":"application/json"}, withCredentials:true});
 
             setotpresponse(response.data);
             navigate("/change_pass", {state:{userid:userid}});

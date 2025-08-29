@@ -30,7 +30,7 @@ function Cart(){
 
     useEffect(()=>{
         
-        axios.get('http://localhost:8086/api/cart/items/count',{headers:{"Content-Type":"application.json"},withCredentials:true}).then((response)=>setCartitemscount(response.data.count)).catch((e)=>(setCartitemscount(0)));
+        axios.get(`${process.env.REACT_APP_API_URL}/api/cart/items/count`,{headers:{"Content-Type":"application.json"},withCredentials:true}).then((response)=>setCartitemscount(response.data.count)).catch((e)=>(setCartitemscount(0)));
         
     },[isquantityupdated])
 
@@ -38,13 +38,13 @@ function Cart(){
 
         document.title = "Checkout";
 
-        axios.get('http://localhost:8086/api/cart/items',{headers:{"Content-Type":"application.json"},withCredentials:true}).then((response)=>setCart(response.data)).catch((e)=>(setCart([])));
+        axios.get(`${process.env.REACT_APP_API_URL}/api/cart/items`,{headers:{"Content-Type":"application.json"},withCredentials:true}).then((response)=>setCart(response.data)).catch((e)=>(setCart([])));
     },[isquantityupdated])
 
 
     async function handleAddButton(productid, productquantity){
 
-        axios.put('http://localhost:8086/api/cart/item/update',{"productid":productid, "quantity":productquantity+1},{headers:{"Content-Type":"application/json"},withCredentials:true}
+        axios.put(`${process.env.REACT_APP_API_URL}/api/cart/item/update`,{"productid":productid, "quantity":productquantity+1},{headers:{"Content-Type":"application/json"},withCredentials:true}
         ).then((response)=>setquantityupdated(response.data.count))
         .catch((e)=>console.log(e));
  
@@ -52,7 +52,7 @@ function Cart(){
 
     async function handleSubButton(productid, productquantity){
 
-        axios.put('http://localhost:8086/api/cart/item/update',{"productid":productid, "quantity":productquantity-1},{headers:{"Content-Type":"application/json"},withCredentials:true}
+        axios.put(`${process.env.REACT_APP_API_URL}api/cart/item/update`,{"productid":productid, "quantity":productquantity-1},{headers:{"Content-Type":"application/json"},withCredentials:true}
         ).then((response)=>setquantityupdated(response.data.count))
         .catch((e)=>console.log(e));
 
@@ -70,7 +70,7 @@ function Cart(){
 
     try{
 
-            const response = await axios.post('http://localhost:8086/api/cart/payment/create',
+            const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/cart/payment/create`,
                 requestpay,
                 {headers:{"Content-Type":"application/json"},withCredentials:true}
             )
@@ -95,7 +95,7 @@ function Cart(){
 
                     try{
 
-                        const verifyResponse = await axios.post('http://localhost:8086/api/cart/payment/verify',{"razorpayOrderId":response.razorpay_order_id,"razorpayPaymentId":response.razorpay_payment_id, "razorpaySignature":response.razorpay_signature, "amountpaid":grandtotal}
+                        const verifyResponse = await axios.post(`${process.env.REACT_APP_API_URL}/api/cart/payment/verify`,{"razorpayOrderId":response.razorpay_order_id,"razorpayPaymentId":response.razorpay_payment_id, "razorpaySignature":response.razorpay_signature, "amountpaid":grandtotal}
                             ,{headers:{"Content-Type":"application/json"},withCredentials:true})
 
                             if(verifyResponse){

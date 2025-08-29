@@ -20,7 +20,7 @@ const Register = () => {
       const requestBody = {  "username":username.trim(), "passwordhash": password.trim(), "email":email.trim(), "role":ev.target.role.value.toString()  };
 
       const response = await axios.post(
-        'http://localhost:8086/api/register',
+        `${process.env.REACT_APP_API_URL}/api/register`,
         requestBody,
         {
           headers: { "Content-Type": "application/json" },

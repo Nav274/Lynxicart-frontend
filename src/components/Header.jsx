@@ -20,20 +20,20 @@ function Header() {
 
     useEffect(()=>{
 
-        axios.get("http://localhost:8086/user/get", {headers:{"Content-Type":"application/json"},withCredentials:true}).then(response => {setuser(response.data)}).catch((error)=>console.log(error.data))
+        axios.get(`${process.env.REACT_APP_API_URL}/user/get`, {headers:{"Content-Type":"application/json"},withCredentials:true}).then(response => {setuser(response.data)}).catch((error)=>console.log(error.data))
 
     }, [])
 
     useEffect(()=>{
 
-        axios.get('http://localhost:8086/api/cart/items/count',{headers:{"Content-Type":"application/json"},withCredentials:true})
+        axios.get(`${process.env.REACT_APP_API_URL}/api/cart/items/count`,{headers:{"Content-Type":"application/json"},withCredentials:true})
         .then(response => {setcartitemscount(response.data.count)}).catch(error=>console.log(error.data))
                         
     }, [])
 
     async function handleLogout(){
 
-        axios.delete('http://localhost:8086/user/logout',{headers:{"Content-Type":"application/json"},withCredentials:true})
+        axios.delete(`${process.env.REACT_APP_API_URL}/user/logout`,{headers:{"Content-Type":"application/json"},withCredentials:true})
         .then(response=>{setLogoutmessage(response.data)
                             navigate('/sign_in')})
         .catch(error=>setLogoutmessage(error.data))
